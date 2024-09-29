@@ -1,5 +1,5 @@
-﻿using CleanArchitecture.LSP.Domain.DTOs;
-using CleanArchitecture.LSP.Domain.Gateway;
+﻿using CleanArchitecture.LSP.Domain.RequestsTravel.Gateway;
+using CleanArchitecture.LSP.Domain.RideHailings.Actions.RequestsTravel.DTOs;
 using System.Net;
 using UriBuilder = CleanArchitecture.LSP.Domain.Util.UriBuilder;
 
@@ -10,7 +10,7 @@ public class AcmeGateway(HttpClient httpClient) : IRideHailingGateway
 
     private readonly HttpClient _httpClient = httpClient;
 
-    public async Task<HttpResponseMessage> MakeRequestAsync(RequestTravelRequest request)
+    public async Task<HttpResponseMessage> MakeRequestAsync(RequestTravelRideHailingRequest request)
     {
         string fullUri = UriBuilder.ResolveUri(request, UriSufix);
 

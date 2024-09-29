@@ -1,12 +1,14 @@
 ﻿using CleanArchitecture.LSP;
 using CleanArchitecture.LSP.Application.UseCases;
-using CleanArchitecture.LSP.Domain.DTOs;
-using CleanArchitecture.LSP.Domain.Entities;
-using CleanArchitecture.LSP.Domain.OperationResult;
+using CleanArchitecture.LSP.Domain.Drivers.Entities;
+using CleanArchitecture.LSP.Domain.RideHailings.Actions.RequestsTravel.DTOs;
+using CleanArchitecture.LSP.Domain.Util;
+
 
 //Request 1
 Driver chosenDriver = new("Bob", "purplecab.com/driver/Bob");
-RequestTravelRequest request = new(chosenDriver, "24 Mapple St.", DateTime.UtcNow, "ORD");
+RequestTravelRequest request = new("Lucas", 
+                                   new(chosenDriver, "24 Mapple St.", DateTime.UtcNow, "ORD"));
 
 await ExecuteAsync(request);
 
@@ -14,7 +16,8 @@ await ExecuteAsync(request);
 
 //Request 2
 chosenDriver = new("Charlie", "acme.com/driver/Charlie");
-request = new(chosenDriver, "13 Oak Ave.", DateTime.UtcNow.AddHours(1), "RET");
+request = new("Lucas", 
+              new(chosenDriver, "13 Oak Ave.", DateTime.UtcNow.AddHours(1), "RET"));
 
 await ExecuteAsync(request);
 

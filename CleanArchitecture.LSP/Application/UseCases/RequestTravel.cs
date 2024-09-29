@@ -1,15 +1,16 @@
-﻿using CleanArchitecture.LSP.Domain.DTOs;
-using CleanArchitecture.LSP.Domain.Gateway;
-using CleanArchitecture.LSP.Domain.OperationResult;
+﻿using CleanArchitecture.LSP.Domain.RequestsTravel.Gateway;
+using CleanArchitecture.LSP.Domain.RideHailings.Actions.RequestsTravel.DTOs;
+using CleanArchitecture.LSP.Domain.RideHailings.Actions.RequestsTravel.OperationResult;
+using CleanArchitecture.LSP.Domain.Util;
+using CleanArchitecture.LSP.Infrastructure.RideHailingGateway;
 
 namespace CleanArchitecture.LSP.Application.UseCases;
-public class RequestTravel(IRideHailingGateway rideHailling)
+public class RequestTravel
 {
-    private readonly IRideHailingGateway _rideHailling = rideHailling;
-
     public async Task<Result<RequestTravel>> ExecuteAsync(RequestTravelRequest request)
     {
-        HttpResponseMessage httpResponseMessage = await _rideHailling.MakeRequestAsync(request);
+        IRideHailingGateway rideHailling = RideHailingFactory.GetRideHailingGateway(request.RequestTravelRideHailingRequest.Driver.DispatchUri);
+        HttpResponseMessage httpResponseMessage = await rideHailling.MakeRequestAsync(request.RequestTravelRideHailingRequest);
 
         if (httpResponseMessage.IsSuccessStatusCode)
         {
@@ -18,4 +19,8 @@ public class RequestTravel(IRideHailingGateway rideHailling)
 
         return new RequestTravelFailure(httpResponseMessage.StatusCode, await httpResponseMessage.Content.ReadAsStringAsync());
     }
+}
+
+public record RequestTravelRequest(string UsernameOfRequest, RequestTravelRideHailingRequest RequestTravelRideHailingRequest)
+{
 }

@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.LSP.Domain.DTOs;
+﻿using CleanArchitecture.LSP.Domain.RideHailings.Actions.RequestsTravel.DTOs;
 
 namespace CleanArchitecture.LSP.Domain.Util;
 public static class UriBuilder
 {
-    public static string ResolveUri(RequestTravelRequest requestTravelRequest, string uriSufix)
+    public static string ResolveUri(RequestTravelRideHailingRequest requestTravelRequest, string uriSufix)
     {
         uriSufix = uriSufix.Replace("{sourceAddress}", requestTravelRequest.SourceAddres);
         uriSufix = uriSufix.Replace("{sourceTime}", requestTravelRequest.SourceTime.ToString());
