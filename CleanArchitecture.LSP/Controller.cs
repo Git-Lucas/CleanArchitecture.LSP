@@ -1,5 +1,5 @@
-﻿using CleanArchitecture.LSP.Application.UseCases;
-using CleanArchitecture.LSP.Domain.Util;
+﻿using CleanArchitecture.LSP.Application;
+using CleanArchitecture.LSP.Application.UseCases;
 
 namespace CleanArchitecture.LSP;
 public static class Controller

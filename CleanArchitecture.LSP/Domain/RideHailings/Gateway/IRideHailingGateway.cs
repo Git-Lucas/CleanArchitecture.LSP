@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.LSP.Domain.RideHailings.Actions.RequestsTravel.DTOs;
+﻿using CleanArchitecture.LSP.Domain.Travels.Entities;
 
-namespace CleanArchitecture.LSP.Domain.RequestsTravel.Gateway;
+namespace CleanArchitecture.LSP.Domain.RideHailings.Gateway;
 public interface IRideHailingGateway
 {
     string UriSufix { get; }
 
-    Task<HttpResponseMessage> MakeRequestAsync(RequestTravelRideHailingRequest request);
+    Task<HttpResponseMessage> MakeRequestAsync(Travel travel);
 }

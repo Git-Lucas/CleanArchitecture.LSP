@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.LSP.Domain.RequestsTravel.Gateway;
-using CleanArchitecture.LSP.Domain.RideHailings.Actions.RequestsTravel.DTOs;
+﻿using CleanArchitecture.LSP.Domain.RideHailings.Gateway;
+using CleanArchitecture.LSP.Domain.Travels.Entities;
 using System.Net;
-using UriBuilder = CleanArchitecture.LSP.Domain.Util.UriBuilder;
+using UriBuilder = CleanArchitecture.LSP.Domain.RideHailings.UriBuilder;
 
 namespace CleanArchitecture.LSP.Infrastructure.RideHailingGateway;
 public class DefaultGateway(HttpClient httpClient) : IRideHailingGateway
@@ -10,9 +10,9 @@ public class DefaultGateway(HttpClient httpClient) : IRideHailingGateway
 
     private readonly HttpClient _httpClient = httpClient;
 
-    public async Task<HttpResponseMessage> MakeRequestAsync(RequestTravelRideHailingRequest request)
+    public async Task<HttpResponseMessage> MakeRequestAsync(Travel travel)
     {
-        string fullUri = UriBuilder.ResolveUri(request, UriSufix);
+        string fullUri = UriBuilder.ResolveUri(travel, UriSufix);
 
         //return await _httpClient.PostAsync(fullUri, null);
         return new HttpResponseMessage(HttpStatusCode.OK);
