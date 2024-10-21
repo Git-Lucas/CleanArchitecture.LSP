@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.LSP.Domain.RequestsTravel.Gateway;
+﻿using CleanArchitecture.LSP.Domain.RideHailings.Gateway;
 
 namespace CleanArchitecture.LSP.Infrastructure.RideHailingGateway;
 public static class RideHailingFactory
